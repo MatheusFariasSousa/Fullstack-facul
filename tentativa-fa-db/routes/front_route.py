@@ -9,8 +9,8 @@ from use_cases.user_use_case import User_use_cases
 from use_cases.product_use_case import Product_Use_Case
 from passlib.context import CryptContext
 from schema.user_schema import User_schema,User_Schema_Front
-from schema.product_schema import Product_Schema
-from db.model import User
+from schema.product_schema import Product_Schema,Product_Schema_Front
+from db.model import User,Product
 
 front_router = APIRouter(prefix="/front",tags=["Front"])
 
@@ -55,6 +55,11 @@ def post_product(db_session:Session = Depends(get_conection),name:str=Form(...),
     produto = Product_Schema(name=name,quantity=quantity,price=price,user_id=1)
     uc.post(product=produto)
 
+
+@front_router.get("/product-page",response_model=List[Product_Schema_Front],tags=["Product-Front"])
+def get_product(db_session: Session = Depends(get_conection)):
+    lista_products = db_session.query(Product).all()
+    return lista_products
 
 
 

@@ -5,3 +5,8 @@ class Product_Schema(BaseModel):
     quantity:int
     price:int
     user_id:int
+
+class Product_Schema_Front(BaseModel):
+    name:str
+    quantity:int
+    price:int
