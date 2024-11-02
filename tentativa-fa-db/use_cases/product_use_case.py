@@ -34,5 +34,6 @@ class Product_Use_Case:
         
     def list_product(self):
         list_of_product = self.db_session.query(Product).all()
+        print(1)
         for product in list_of_product:
             yield {"id":product.id,"name":product.name,"price":product.price,"quantity":product.quantity}

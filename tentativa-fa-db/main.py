@@ -34,7 +34,7 @@ app.include_router(router=front_router)
 
 
 
-app.mount("/static",StaticFiles(directory="static"),name="static")
+
 
 
 
