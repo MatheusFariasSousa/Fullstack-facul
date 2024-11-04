@@ -30,7 +30,7 @@ input {
 }
 button{  
   display: inline-flex;
-  gap: 20px; 
+  gap: 10px; 
   margin-top: 20px; 
   margin-left: 20px;
   border-radius: 14px;

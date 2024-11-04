@@ -7,6 +7,7 @@ class Product_Schema(BaseModel):
     user_id:int
 
 class Product_Schema_Front(BaseModel):
+    id:int
     name:str
     quantity:int
     price:int

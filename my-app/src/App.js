@@ -84,6 +84,7 @@ function CadastroForm() {
           
                           <button type="submit">Cadastrar</button>
                           <button type="button" onClick={goToUsers}>Ver usuarios</button>
+                          
                       
           
           

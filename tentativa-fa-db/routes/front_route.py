@@ -58,8 +58,21 @@ def post_product(db_session:Session = Depends(get_conection),name:str=Form(...),
 
 @front_router.get("/product-page",response_model=List[Product_Schema_Front],tags=["Product-Front"])
 def get_product(db_session: Session = Depends(get_conection)):
-    lista_products = db_session.query(Product).all()
-    return lista_products
+    products = db_session.query(Product).all()
+    return products
+
+@front_router.post("/put-product")
+def put_product(db_session:Session = Depends(get_conection),name:str=Form(...),quantity:int=Form(...),price:int=Form(...),id:int=Form(...)):
+    product = db_session.query(Product).where(Product.id == id).first()
+
+    product.name = name
+    product.price= price
+    product.quantity= quantity
+
+    db_session.add(product)
+    db_session.commit()
+
+    return RedirectResponse(url="/front/product-page")
 
 
 
