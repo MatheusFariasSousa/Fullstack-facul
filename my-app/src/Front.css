@@ -1,0 +1,193 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    margin-top: 50px;
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+#coment{
+    font-family: 'Brush Script MT', cursive;
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+}
+  
+  .App-header {
+    background-color: #7e3030;
+    border-radius: 10px;
+
+    height: 1200px;
+    display: flow-root;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+ 
+  
+  .button-link {
+    appearance: button;
+    background-color: rgb(70, 172, 212);
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #000000 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: left;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  .button-link:focus {
+    text-decoration: none;
+  }
+  
+  .button-link:hover {
+    text-decoration: none;
+  }
+  
+  .button-link:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+  }
+  
+  .button-link:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-link {
+      padding: 12px 50px;
+    }
+  }
+.ve-user{
+    margin-top: 20px;
+    
+    
+}
+
+.ve-prod{
+    margin-top: 20px;
+}
+.ve-venda{
+    margin-top: 20px;
+}
+
+#bot-user{
+    margin-left: 10px;
+    width: 150px;
+    
+    
+}
+
+#bot-prod{
+    margin-left: 10px;
+    width: 150px;
+    
+}
+
+#bot-venda{
+    margin-left: 10px;
+    width: 150px;
+}
+  
+#bot-users{
+    margin-left: 20px;
+    width: 200px;
+}
+
+#bot-prods{
+    margin-left: 20px;
+    
+    width: 200px;
+}
+
+#bot-vendas{
+    margin-left: 20px;
+    
+    width: 200px;;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

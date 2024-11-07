@@ -6,6 +6,7 @@ import CadastroForm from './App';
 import UsersList from './Users';
 import reportWebVitals from './reportWebVitals';
 import ProductList from './Product';
+import Front from './Front';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route path="/front" element={<CadastroForm />} />
         <Route path="/front/users-page" element={<UsersList />} />
         <Route path="/front/product-page" element={<ProductList />}/>
+        <Route path='/' element={<Front />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
