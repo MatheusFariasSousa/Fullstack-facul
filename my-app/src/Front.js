@@ -6,6 +6,19 @@ import sell_logo from './logos/sell_logo.svg'
 import './Front.css';
 
 function Front() {
+
+  const goToUsers = () => {
+    window.location.href = 'http://localhost:3000/front/users-page';
+};
+
+  const goToProducts = () =>{
+    window.location.href = 'http://localhost:3000/front/product-page'
+  }
+
+  const goToCadUser = () =>{
+    window.location.href  = 'http://localhost:3000/front/' 
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,13 +30,13 @@ function Front() {
         </p>
         <div class="ve-user">
         <img src={user_logo} />
-        <button class="button-link" role="button" id='bot-users'>Cadastrar Usuario</button>
-        <button class="button-link" role="button" id='bot-user'>Ver Usuarios</button>
+        <button class="button-link" role="button" id='bot-users' onClick={goToCadUser}>Cadastrar Usuario</button>
+        <button class="button-link" role="button" id='bot-user' onClick={goToUsers} >Ver Usuarios</button>
         </div>
         <div class='ve-prod'>
         <img src={product_logo} />
         <button class="button-link" role="button" id='bot-prods'>Cadastrar Produto</button>
-        <button class="button-link" role="button" id='bot-prod'>Ver Produtos</button>
+        <button class="button-link" role="button" id='bot-prod' onClick={goToProducts}>Ver Produtos</button>
         </div> 
         <div class='ve-venda'>
         <img src={sell_logo} />
