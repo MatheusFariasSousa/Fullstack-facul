@@ -16,7 +16,11 @@ function Front() {
   }
 
   const goToCadUser = () =>{
-    window.location.href  = 'http://localhost:3000/front/' 
+    window.location.href  = 'http://localhost:3000/front' 
+  }
+
+  const goToCadProd = () =>{
+    window.location.href   = 'http://localhost:3000/front/product'
   }
 
   return (
@@ -35,7 +39,7 @@ function Front() {
         </div>
         <div class='ve-prod'>
         <img src={product_logo} />
-        <button class="button-link" role="button" id='bot-prods'>Cadastrar Produto</button>
+        <button class="button-link" role="button" id='bot-prods' onClick={goToCadProd}>Cadastrar Produto</button>
         <button class="button-link" role="button" id='bot-prod' onClick={goToProducts}>Ver Produtos</button>
         </div> 
         <div class='ve-venda'>

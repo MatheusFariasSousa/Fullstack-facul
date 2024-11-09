@@ -2,21 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
-import CadastroForm from './App';
-import UsersList from './Users';
+import UsersList from './usuario/user_list/Users.js';
 import reportWebVitals from './reportWebVitals';
-import ProductList from './Product';
+import ProductList from './produto/prod_list/Product.js';
+import ProdutoForm from './produto/prod_form/Prod_form.js';
 import Front from './Front';
+import CadastroForms from './usuario/user_form/User_forms.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/front" element={<CadastroForm />} />
+        
         <Route path="/front/users-page" element={<UsersList />} />
         <Route path="/front/product-page" element={<ProductList />}/>
         <Route path='/' element={<Front />}/>
+        <Route path='/front/product' element={<ProdutoForm />}/>
+        <Route path="/front" element={<CadastroForms />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

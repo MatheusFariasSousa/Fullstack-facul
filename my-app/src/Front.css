@@ -20,7 +20,7 @@
 }
   
   .App-header {
-    background-color: #7e3030;
+    background-color: #913131;
     border-radius: 10px;
 
     height: 1200px;
@@ -66,7 +66,7 @@
     margin: 0 5px 10px 0;
     overflow: visible;
     padding: 12px 40px;
-    text-align: left;
+    text-align: center;
     text-transform: none;
     touch-action: manipulation;
     user-select: none;
@@ -119,6 +119,7 @@
 }
 
 #bot-prod{
+    
     margin-left: 10px;
     width: 150px;
     

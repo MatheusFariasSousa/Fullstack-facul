@@ -1,21 +1,20 @@
 import React from 'react';
-import './App.css';
+import styles from './User_forms.module.css';
 
-function CadastroForm() {
+
+function CadastroForms() {
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [cpf, setCpf] = React.useState('');
   const [senha, setSenha] = React.useState('');
 
-  const goToUsers = () => {
-              window.location.href = 'http://localhost:3000/front/users-page';
-          };
+  
   
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      /* COMENTEI A PARTE DO ALERT PORQUE ELE MOSTRA OS DADOS CADASTRADOS alert(`Nome: ${nome}\nEmail: ${email}\nCPF: ${cpf}\nSenha: ${senha}`);*/
-      const formData = new FormData(); // Criando o objeto FormData
+      
+    const formData = new FormData(); 
   formData.append('nome', nome);
   formData.append('email', email);
   formData.append('cpf', cpf);
@@ -27,8 +26,8 @@ function CadastroForm() {
           body: formData, 
       });
 
-      if (response.redirected) {
-          window.location.href = 'http://localhost:3000/front/sucesso';
+      if (response.ok) {
+          alert('Usuario Cadastrado');
       } else {
           console.error('Erro ao criar usuário:', response.statusText);
           alert('opa!');
@@ -43,10 +42,11 @@ function CadastroForm() {
   };
 
   return (
-      <div className="form-cadastro">
-          <form  onSubmit={handleSubmit} className="form">
+      <div className={styles.userFormCadastro}>
+          <form  onSubmit={handleSubmit} className={styles.userForm}>
+          <p className={styles.userTitle}>Cadastrar Usuario</p>
           <label>
-              <input className="nome" placeholder="Insira seu nome"
+              <input className={styles.userInput} placeholder="Insira seu nome"
          
                   type="text"
                   value={nome}
@@ -55,7 +55,7 @@ function CadastroForm() {
               />
           </label>
           <label>
-              <input placeholder="Email"
+              <input className={styles.userInput} placeholder="Email"
               
                   type="email"
                   value={email}
@@ -64,7 +64,7 @@ function CadastroForm() {
               />
           </label>
           <label>
-              <input placeholder="Cpf"
+              <input className={styles.userInput} placeholder="Cpf"
              
                   type="text"
                   value={cpf}
@@ -73,7 +73,7 @@ function CadastroForm() {
               />
           </label>
           <label>
-              <input placeholder="Senha"
+              <input className={styles.userInput} placeholder="Senha"
                  
                   type="password"
                   value={senha}
@@ -82,8 +82,8 @@ function CadastroForm() {
               />
           </label>
           
-                          <button type="submit">Cadastrar</button>
-                          <button type="button" onClick={goToUsers}>Ver usuarios</button>
+                          <button type="submit"  className={styles.userBotao}>Cadastrar Usuario</button>
+                          
                           
                       
           
@@ -99,4 +99,4 @@ function CadastroForm() {
   );
 }
 
-export default CadastroForm;
+export default CadastroForms;
