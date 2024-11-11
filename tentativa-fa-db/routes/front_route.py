@@ -7,9 +7,11 @@ from typing import List
 from routes.deps import get_conection
 from use_cases.user_use_case import User_use_cases
 from use_cases.product_use_case import Product_Use_Case
+from use_cases.sale_use_case import Sale_Use_Case
 from passlib.context import CryptContext
 from schema.user_schema import User_schema,User_Schema_Front
 from schema.product_schema import Product_Schema,Product_Schema_Front
+from schema.sale_schema import Sale_Schema
 from db.model import User,Product
 
 front_router = APIRouter(prefix="/front",tags=["Front"])
@@ -77,18 +79,18 @@ def put_product(db_session:Session = Depends(get_conection),name:str=Form(...),q
 
 
     
+@front_router.post("/venda")
+def post_venda(db_session:Session = Depends(get_conection),user_id:int=Form(...),product_id:int=Form(...),quantity:int=Form(...)):
+    uc = Sale_Use_Case(db_session=db_session)
+    venda = Sale_Schema(user_id=user_id,product_id=product_id,quantity=quantity)
+    uc.comprar(venda)
 
 
-"""@front_router.get("/users-page")
-def get_page(request:Request):
-    return templates.TemplateResponse("users.html",{"request":request})"""
 
-"""@front_router.get("/")
-def read_front(request:Request)a:
-    return templates.TemplateResponse(request=request,name="index.html")"""
 
-"""@front_router.get("/sucesso")
-def success_page(request: Request):
-    return templates.TemplateResponse("sucesso.html", {"request": request})"""
+
+    
+
+
     
 

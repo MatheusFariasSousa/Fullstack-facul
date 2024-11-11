@@ -23,6 +23,10 @@ function Front() {
     window.location.href   = 'http://localhost:3000/front/product'
   }
 
+  const goToVenda = () =>{
+    window.location.href = 'http://localhost:3000/front/venda'
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -44,7 +48,7 @@ function Front() {
         </div> 
         <div class='ve-venda'>
         <img src={sell_logo} />
-        <button class="button-link" role="button" id='bot-vendas'>Realizar Venda</button>
+        <button class="button-link" role="button" id='bot-vendas' onClick={goToVenda} >Realizar Venda</button>
         <button class="button-link" role="button" id='bot-venda'>Ver Vendas</button>
 
             </div> 

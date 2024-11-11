@@ -12,7 +12,7 @@ class Product_Use_Case:
 
     def post(self,product:Product_Schema):
         person = self.db_session.query(User).where(User.id==product.user_id).first()
-        print(person)
+        
         if not person:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="User not found")
         print(person)

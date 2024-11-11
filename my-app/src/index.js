@@ -8,6 +8,7 @@ import ProductList from './produto/prod_list/Product.js';
 import ProdutoForm from './produto/prod_form/Prod_form.js';
 import Front from './Front';
 import CadastroForms from './usuario/user_form/User_forms.js';
+import VendaForm from './venda/venda_form/Venda.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path='/' element={<Front />}/>
         <Route path='/front/product' element={<ProdutoForm />}/>
         <Route path="/front" element={<CadastroForms />} />
+        <Route path='/front/venda' element={<VendaForm />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
