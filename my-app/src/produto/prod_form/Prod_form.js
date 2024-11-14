@@ -27,6 +27,7 @@ function ProdutoForm() {
 
       if (response.ok) {
           alert('Produto Cadastrado');
+          window.location.href = 'http://localhost:3000';
       } else {
           console.error('Erro ao cadastrar produto:', response.statusText);
           alert('opa!');

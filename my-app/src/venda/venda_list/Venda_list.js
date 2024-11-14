@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Users.module.css';
+import styles from './Venda_list.module.css';
 import {
 
     Modal,Box
@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 
 
-    function UsersList() {
+    function VendaList() {
         
     const boxStyle = {
     backgroundColor: 'white',
@@ -24,7 +24,7 @@ import { useState } from 'react';
     width: '400px',
     };
       const [open, setOpen] = useState(false);
-      const [users, setUsers] = React.useState([]);
+      const [vendas, setVenda] = React.useState([]);
      
 
     const handleOpen = () => setOpen(true);
@@ -32,36 +32,32 @@ import { useState } from 'react';
 
       const [formData, setFormData] = React.useState({
         id:"",
-        name: "",
-        email: "",
-        password: "",
+        Quantity: "",
       });
             
 
       
       React.useEffect(() => {
-        fetch("http://localhost:8000/front/users-page")  
+        fetch("http://localhost:8000/front/venda-page")  
           .then(response => {
             if (!response.ok) {
               throw new Error("Erro na resposta do servidor");
             }
             return response.json();
           })
-          .then(data => setUsers(data))
-          .catch(err => console.error("Erro ao buscar usuários:", err));
+          .then(data => setVenda(data))
+          .catch(err => console.error("Erro ao buscar das vendas:", err));
       }, []);
 
-      const handleEdit = (user) => {
+      const handleEdit = (vendas) => {
         window.scrollTo({
         top: 0,
         behavior: 'smooth'
         })
         handleOpen();
         setFormData({
-          id:user.id,
-          name: user.name,
-          email: user.email,
-          password: user.password,
+          id:vendas.id,
+          Quantity:vendas.Quantity
         });
       };
 
@@ -71,6 +67,11 @@ import { useState } from 'react';
           ...prevData,
           [name]: value,
         }));
+      };
+      
+      
+      const excluir  = (vendas) =>{
+        const response = fetch(`http://localhost:8000/front/del-venda/${vendas.id}`)
       };
 
 
@@ -82,18 +83,17 @@ import { useState } from 'react';
 
   const aformData = new FormData();
   aformData.append('id', formData.id);
-  aformData.append('name', formData.name);
-  aformData.append('email', formData.email);
-  aformData.append('password', formData.password);
+  aformData.append('Quantity', formData.Quantity);
+
 
   try {
-    const response = await fetch('http://localhost:8000/front/put-user', {
+    const response = await fetch('http://localhost:8000/front/put-venda', {
       method: 'POST',
       body: aformData,
     });
 
-    if (response.redirected) {
-      window.location.href = 'http://localhost:3000/front/users-page';
+    if (response.ok) {
+      window.location.href = 'http://localhost:3000/front/venda-page';
       handleClose();
     } else {
       console.error('Erro ao criar usuário:', response.statusText);
@@ -107,63 +107,58 @@ import { useState } from 'react';
 
 
       return (
-        <div className={styles.userback}>
+        <div>
           <Modal  open={open} onClose={handleClose}>
             <Box style={boxStyle}>
                 <form onSubmit={handleSubmit} className="form">
             
                   <label>
-                    Name:
-                    <input id="name" type="text" name="name" value={formData.name}
+                    Quantity:
+                    <input id="Quantity" name="Quantity" value={formData.Quantity}
                     onChange={handleChange} />
                   </label>
                   <br />
-                  <label>
-                    Email:
-                    <input id="email" type="email" name="email" 
-                    value={formData.email}
-                    onChange={handleChange}/>
-                  </label>
                   <br />
-                  <label>
-                    Password:
-                    <input id="password" type="password" name="password" 
-                    value={formData.password}
-                    onChange={handleChange}/>
-                  </label>
-                  <br />
-                  <br />
-                <button type='submit' className={styles.userbotao}>Editar</button> 
+                <button type='submit' className={styles.vendbotao}>Editar</button> 
               </form>
             </Box>
         </Modal>
 
           
-          <h2>Users List</h2>
+          <h2>Sell List</h2>
           <ul>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <li key={user.id}>
-                  Id: {user.id} | Name: {user.name} | Email: {user.email}
+            {vendas.length > 0 ? (
+              vendas.map((venda) => (
+                <li key={venda.id}>
+                  Id: {venda.id} | User: {venda.User} | Product: {venda.Product} | Quantity: {venda.Quantity} | Price: {venda.Price}
                   <button
-                    className={styles.usereditar}
+                    className={styles.vendeditar}
                     type="button"
                     variant="contained"
-                    onClick={() => handleEdit(user)}
+                    onClick={() => handleEdit(venda)}
                     
                   >
-                    Update User
-                  </button> 
+                    Update Venda
+                  </button>
+                  <button
+                  className={styles.vendeditar}
+                  type="button"
+                  variant="contained"
+                  onClick={() => excluir(venda)}
+                  >
+                    Excluir
+                  </button>
+
                   <hr />
 
                 </li>
               ))
             ) : (
-              <p>No users found.</p>
+              <p>No sells found.</p>
             )}
           </ul>
         </div>
       );
     }
 
-export default UsersList;
+export default VendaList;

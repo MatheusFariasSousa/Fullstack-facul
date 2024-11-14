@@ -7,12 +7,16 @@ import './Front.css';
 
 function Front() {
 
+
   const goToUsers = () => {
     window.location.href = 'http://localhost:3000/front/users-page';
 };
 
   const goToProducts = () =>{
     window.location.href = 'http://localhost:3000/front/product-page'
+  }
+  const goToVendas = () =>{
+    window.location.href = 'http://localhost:3000/front/venda-page'
   }
 
   const goToCadUser = () =>{
@@ -23,7 +27,7 @@ function Front() {
     window.location.href   = 'http://localhost:3000/front/product'
   }
 
-  const goToVenda = () =>{
+  const goToCadVenda = () =>{
     window.location.href = 'http://localhost:3000/front/venda'
   }
 
@@ -48,8 +52,8 @@ function Front() {
         </div> 
         <div class='ve-venda'>
         <img src={sell_logo} />
-        <button class="button-link" role="button" id='bot-vendas' onClick={goToVenda} >Realizar Venda</button>
-        <button class="button-link" role="button" id='bot-venda'>Ver Vendas</button>
+        <button class="button-link" role="button" id='bot-vendas' onClick={goToCadVenda} >Realizar Venda</button>
+        <button class="button-link" role="button" id='bot-venda' onClick={goToVendas}>Ver Vendas</button>
 
             </div> 
        

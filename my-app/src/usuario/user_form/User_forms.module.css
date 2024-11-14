@@ -32,7 +32,7 @@
     
 
 }
-.prodInput:focus {
+.userInput:focus {
     border-color: rgb(70, 172, 212);
     outline: none;
   }

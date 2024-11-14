@@ -28,6 +28,7 @@ function CadastroForms() {
 
       if (response.ok) {
           alert('Usuario Cadastrado');
+          window.location.href = 'http://localhost:3000';
       } else {
           console.error('Erro ao criar usuário:', response.statusText);
           alert('opa!');

@@ -27,6 +27,8 @@ function VendaForm() {
 
       if (response.ok) {
           alert('Venda Cadastrada');
+          window.location.href = 'http://localhost:3000';
+          
       } else {
           console.error('Erro ao cadastrar venda:', response.statusText);
           alert('opa!');
