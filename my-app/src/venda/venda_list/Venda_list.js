@@ -70,8 +70,19 @@ import { useState } from 'react';
       };
       
       
-      const excluir  = (vendas) =>{
-        const response = fetch(`http://localhost:8000/front/del-venda/${vendas.id}`)
+      const excluir  =  async (vendas) =>{
+        const response =  await fetch(`http://localhost:8000/front/del-venda/${vendas.id}`,{
+          method: 'DELETE',
+      });
+      if(response.ok){
+        alert("Sucesso");
+        window.location.href='http://localhost:3000/front/venda-page';
+      }
+      else{
+        alert(response.statusText);
+        console.error('Erro ao deletar venda:', response.statusText);
+        window.location.href='http://localhost:3000/front/venda-page';
+      }
       };
 
 
@@ -146,7 +157,7 @@ import { useState } from 'react';
                   variant="contained"
                   onClick={() => excluir(venda)}
                   >
-                    Excluir
+                    Delete Venda
                   </button>
 
                   <hr />

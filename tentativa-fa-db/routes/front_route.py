@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Form,Depends
+from fastapi import APIRouter,Form,Depends,status
 from fastapi.responses import RedirectResponse
 
 
@@ -20,9 +20,9 @@ crypt =CryptContext(schemes=["sha256_crypt"])
 
 
 
+#User
 
-
-@front_router.post("/")
+@front_router.post("/",tags=["User-Front"])
 def post_front(db_session:Session = Depends(get_conection),nome:str=Form(...),cpf:str=Form(...),senha:str=Form(...),email:str=Form(...)):
     person = User_schema(name=nome,email=email,password=senha,cpf_cnpj=cpf,is_active=True)
     print("1")
@@ -30,13 +30,13 @@ def post_front(db_session:Session = Depends(get_conection),nome:str=Form(...),cp
     uc.post_user(person)
     
 
-@front_router.get("/users-page", response_model=List[User_Schema_Front])
+@front_router.get("/users-page", response_model=List[User_Schema_Front],tags=["User-Front"])
 def get_users(db_session: Session = Depends(get_conection)):
     users = db_session.query(User).all()
     
     return users 
 
-@front_router.post("/put-user")
+@front_router.post("/put-user",tags=["User-Front"])
 def put_user(db_session:Session = Depends(get_conection),name:str=Form(...),id:int=Form(...),password:str=Form(...),email:str=Form(...)):
     person = db_session.query(User).where(User.id == id).first()
     
@@ -51,10 +51,16 @@ def put_user(db_session:Session = Depends(get_conection),name:str=Form(...),id:i
     except:
         return "Erro!"
 
+
+
+
+
+#Prod
+
 @front_router.post("/product",tags=["Product-Front"])
-def post_product(db_session:Session = Depends(get_conection),name:str=Form(...),quantity:int=Form(...),price:int=Form(...)):
+def post_product(db_session:Session = Depends(get_conection),name:str=Form(...),quantity:int=Form(...),price:int=Form(...),user_id:int=Form(...)):
     uc = Product_Use_Case(db_session=db_session)
-    produto = Product_Schema(name=name,quantity=quantity,price=price,user_id=1)
+    produto = Product_Schema(name=name,quantity=quantity,price=price,user_id=user_id)
     uc.post(product=produto)
 
 
@@ -76,9 +82,16 @@ def put_product(db_session:Session = Depends(get_conection),name:str=Form(...),q
 
     return RedirectResponse(url="/front/product-page")
 
+@front_router.delete("/del-prod/{id}")
+def del_prod(id:int,db_session:Session = Depends(get_conection)):
+    uc = Product_Use_Case(db_session=db_session)
+    uc.del_prod(id=id)
 
 
     
+
+#Venda
+
 @front_router.post("/venda",tags=["Sale-Front"])
 def post_venda(db_session:Session = Depends(get_conection),user_id:int=Form(...),product_id:int=Form(...),quantity:int=Form(...)):
     uc = Sale_Use_Case(db_session=db_session)
@@ -101,6 +114,9 @@ def put_venda(id:int=Form(...),Quantity:int=Form(...),db_session:Session= Depend
 def del_venda(id:int,db_session:Session=Depends(get_conection)):
     uc = Sale_Use_Case(db_session=db_session)
     uc.del_venda(id)
+    return status.HTTP_200_OK
+
+
 
 
 

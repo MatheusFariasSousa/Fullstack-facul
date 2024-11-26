@@ -37,3 +37,14 @@ class Product_Use_Case:
         print(1)
         for product in list_of_product:
             yield {"id":product.id,"name":product.name,"price":product.price,"quantity":product.quantity}
+
+    def del_prod(self,id:int):
+        prod = self.db_session.query(Product).where(Product.id == id).first()
+        if not prod:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Product invalido")
+        self.db_session.delete(prod)
+        try:
+            self.db_session.commit()
+        except:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+

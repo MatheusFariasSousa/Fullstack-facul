@@ -1,5 +1,5 @@
 import React from 'react';
-import './Product.css';
+import styles from './Product.module.css';
 import {
 
     Modal,Box
@@ -73,6 +73,22 @@ import { useState } from 'react';
         }));
       };
 
+      const del = async (products) =>{
+        const response = await fetch(`http://localhost:8000/front/del-prod/${products.id}`,{
+          method:'DELETE'
+        });
+        if(response.ok){
+          alert('sucesso');
+          window.location.href = 'http://localhost:3000/front/product-page';
+        }
+        else{
+          alert('erro');
+          console.log = response.statusText;
+
+        }
+
+      }
+
 
 
       
@@ -110,11 +126,12 @@ import { useState } from 'react';
         <div>
           <Modal  open={open} onClose={handleClose}>
             <Box style={boxStyle}>
-                <form onSubmit={handleSubmit} className="form">
+                <form onSubmit={handleSubmit} className={styles.form}>
             
                   <label>
                     Name:
-                    <input id="name" type="text" name="name" value={formData.name}
+                    <input id="name" type="text" name="name" value={formData.name} 
+                    
                     onChange={handleChange} />
                   </label>
                   <br />
@@ -123,6 +140,7 @@ import { useState } from 'react';
                     <input id="quantity"  name="quantity" 
                     value={formData.quantity}
                     onChange={handleChange}/>
+                    
                   </label>
                   <br />
                   <label>
@@ -130,10 +148,11 @@ import { useState } from 'react';
                     <input id="price"  name="price" 
                     value={formData.price}
                     onChange={handleChange}/>
+                    
                   </label>
                   <br />
                   <br />
-                <button type='submit' id="botao">Editar</button> 
+                <button type='submit' id="botao" className={styles.prodbotao}>Editar</button> 
               </form>
             </Box>
         </Modal>
@@ -147,7 +166,7 @@ import { useState } from 'react';
                   Id: {product.id} | Name: {product.name} | Quantity: {product.quantity} | Price: ${product.price}.00
                   <button
                   id="editar"
-                    className="edit-user"
+                    className={styles.prodeditar}
                     type="button"
                     variant="contained"
                     onClick={() => handleEdit(product)}
@@ -155,6 +174,16 @@ import { useState } from 'react';
                   >
                     Update Product
                   </button> 
+                  <button
+                  id="del"
+                    className={styles.prodeditar}
+                    type="button"
+                    variant="contained"
+                    onClick={() => del(product)}
+                    
+                  >
+                    Delete Product
+                  </button>
                   <hr />
 
                 </li>

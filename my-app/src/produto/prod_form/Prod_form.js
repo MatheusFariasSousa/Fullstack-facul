@@ -5,6 +5,7 @@ function ProdutoForm() {
   const [name, setNome] = React.useState('');
   const [quantity, setQuant] = React.useState('');
   const [price, setPrice] = React.useState('');
+  const [user_id,setUser] = React.useState('');
   
 
  
@@ -17,6 +18,7 @@ function ProdutoForm() {
   formData.append('name', name);
   formData.append('quantity', quantity);
   formData.append('price', price);
+  formData.append('user_id',user_id);
   
 
   try {
@@ -72,6 +74,16 @@ function ProdutoForm() {
                   onChange={(e) => setPrice(e.target.value)}
                   required
               />
+          </label>
+          <label>
+          <input className={styles.prodInput} placeholder="User Id"
+             
+             type="number"
+             value={user_id}
+             onChange={(e) => setUser(e.target.value)}
+             required
+             />
+
           </label>
           
           
